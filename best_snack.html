@@ -1,11 +1,103 @@
 <!DOCTYPE>
 <html>
 <head>
+<title>Best Vending Machine Snack</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid black;
 	border-collapse: collapse;
 	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.sorted {
+	background-color: lightblue;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
 }
 </style>
 </head>
@@ -36,25 +128,41 @@ table, th, td {
 		</tr>
 		<tr>
 			<td>Fritos</td>
-			<td>1.00</td>
-			<td>80</td>
-			<td>120</td>
-			<td>120</td>
+			<td>0.00</td>
+			<td>28.3</td>
+			<td>160</td>
+			<td>0</td>
 			<td>2</td>
-			<td>2</td>
-			<td>test data</td>
+			<td>0</td>
+			<td>Not bought from vending machine</td>
 		</tr>
 		<tr>
-			<td>Snickers</td>
-			<td>1.50</td>
-			<td>50</td>
-			<td>500</td>
-			<td>333</td>
-			<td>4</td>
-			<td>1</td>
-			<td>test data</td>
+			<td>Spearmint Extra</td>
+			<td>.125</td>
+			<td>2.7</td>
+			<td>5</td>
+			<td>40</td>
+			<td>0</td>
+			<td>0</td>
+			<td>Data per stick</td>
+		</tr>
+		<tr>
+			<td id="zingers" class="tooltip" onclick="showModal('zingers.jpg', 'Zingers')">
+				Zingers<span class="tooltiptext">Click to view Nutrition Facts</span>
+			</td>
+			<td>1.25</td>
+			<td>108</td>
+			<td>400</td>
+			<td>320</td>
+			<td>3</td>
+			<td>2.4</td>
 		</tr>
 	</table>
+	<div id="myModal" class="modal">
+		<span class="close">&times;</span>
+		<img class="modal-content" id="img01">
+		<div id="caption"></div>
+	</div>
 	
 	<script>
 		function sortTable(n, a) {
@@ -139,6 +247,35 @@ table, th, td {
 					shouldSwitch = true;
 					return shouldSwitch;
 				}
+			}
+		}
+	</script>
+	
+	<script>
+		// Get the modal
+		var modal = document.getElementById('myModal');
+
+		// Get the image and insert it inside the modal - use its "alt" text as a caption
+		var modalImg = document.getElementById("img01");
+		var captionText = document.getElementById("caption");
+		function showModal(imgSrc, imgCaption) {
+			modal.style.display = "block";
+			modalImg.src = imgSrc;
+			captionText.innerHTML = imgCaption;
+		}
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() { 
+			modal.style.display = "none";
+		}
+		
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
 			}
 		}
 	</script>
