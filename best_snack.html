@@ -137,7 +137,7 @@ table, th, td {
 			<td>Not bought from vending machine</td>
 		</tr>
 		<tr>
-			<td>Spearmint Extra</td>
+			<td>Extra - Spearmint</td>
 			<td>.125</td>
 			<td>2.7</td>
 			<td>5</td>
@@ -147,9 +147,7 @@ table, th, td {
 			<td>Data per stick</td>
 		</tr>
 		<tr>
-			<td id="zingers" class="tooltip" onclick="showModal('zingers.jpg', 'Zingers')">
-				Zingers<span class="tooltiptext">Click to view Nutrition Facts</span>
-			</td>
+			<td class="tooltip" onclick="showModal('zingers.jpg', 'Zingers')">Zingers <span class="tooltiptext">Click to view Nutrition Facts</span></td>
 			<td>1.25</td>
 			<td>108</td>
 			<td>400</td>
@@ -169,6 +167,8 @@ table, th, td {
 			var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 			table = document.getElementById("snackTable");
 			switching = true;
+			// Highlight the currently sorted column
+			highlightSort(table, n);
 			// Set the sorting direction to ascending:
 			dir = "asc"; 
 			/* Make a loop that will continue until
@@ -248,6 +248,19 @@ table, th, td {
 					return shouldSwitch;
 				}
 			}
+		}
+		
+		function highlightSort(table, n) {
+			var i;
+			cols = table.getElementsByTagName("TH");
+			/* Loop through all columns in the table,
+			remove the 'sorted' class from each */
+			for(i=0; i<cols.length; i++){
+				cols[i].classList.remove("sorted");
+			}
+			// Add 'sorted' class to the desired column
+			cols[n].classList.add("sorted");
+			
 		}
 	</script>
 	
